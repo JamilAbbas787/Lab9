@@ -36,7 +36,9 @@ namespace Lab09
                 };
 
 
-            var selectedStudent = from val in studentNames where val.Key == 1 select val.Value;
+            var selectionOfStudent = (from val in studentNames where val.Key == numberOnArray select val.Value).FirstOrDefault();
+
+            return selectionOfStudent;
 
            } 
         
