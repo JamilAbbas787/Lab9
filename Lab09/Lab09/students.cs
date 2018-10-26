@@ -34,8 +34,9 @@ namespace Lab09
                 new KeyValuePair<int, string>(19, "Jonathan Ericsson"),
                 new KeyValuePair<int, string>(20, "Frans Nielsen"),
                 };
-            
-                
+
+
+            var selectedStudent = from val in studentNames where val.Key == 1 select val.Value;
 
            } 
         
