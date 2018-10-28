@@ -49,7 +49,7 @@ namespace Lab09
            } 
        
 
-        public static string Hometown(uint numberOnArray)
+        public static string SelectHometown(uint numberOnArray)
         {
             var studentHomeTowns = new List<KeyValuePair<int, string>>
             {
@@ -109,6 +109,37 @@ namespace Lab09
 
             var selectedFood = (from val in food where val.Key == numberOnArray select val.Value).FirstOrDefault();
             return selectedFood;
+        }
+
+        public static string SelectColor(uint numberOnList)
+        {
+            var color = new List<KeyValuePair<int, string>>
+            {
+                new KeyValuePair<int, string>(1, "Red"),
+                new KeyValuePair<int, string>(2, "Green"),
+                new KeyValuePair<int, string>(3, "Orange"),
+                new KeyValuePair<int, string>(4, "Yellow"),
+                new KeyValuePair<int, string>(5, "Pink"),
+                new KeyValuePair<int, string>(6, "Blue"),
+                new KeyValuePair<int, string>(7, "Red"),
+                new KeyValuePair<int, string>(8, "Red"),
+                new KeyValuePair<int, string>(9, "Blue"),
+                new KeyValuePair<int, string>(10, "Purple"),
+                new KeyValuePair<int, string>(11, "Blue"),
+                new KeyValuePair<int, string>(12, "Blue"),
+                new KeyValuePair<int, string>(13, "Blue"),
+                new KeyValuePair<int, string>(14, "Green"),
+                new KeyValuePair<int, string>(15, "Orange"),
+                new KeyValuePair<int, string>(16, "Red"),
+                new KeyValuePair<int, string>(17, "Yellow"),
+                new KeyValuePair<int, string>(18, "Orange"),
+                new KeyValuePair<int, string>(19, "Yellow"),
+                new KeyValuePair<int, string>(20, "Red")
+
+            };
+
+            var selectedColor = (from val in color where val.Key == numberOnList select val.Value).FirstOrDefault();
+            return selectedColor;
         }
 
     }

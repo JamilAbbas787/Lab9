@@ -22,15 +22,45 @@ namespace Lab09
                 studentOne = SelectStudent();
             }
 
-            Console.WriteLine($"Student {studentOne} is {CollectionOfList.PickAStudent(studentOne)}. What would you like to know about {CollectionOfList.PickAStudent(studentOne)}? \n (enter \"hometown\" or \"favorite food\")  ");
+            Console.WriteLine($"Student {studentOne} is {CollectionOfList.PickAStudent(studentOne)}. What would you like to know about {CollectionOfList.PickAStudent(studentOne)}? \n (enter \"color\", \"hometown\" or \"favorite food\")  ");
 
+            string answerToQuestion;
+            string continueAnswer;
+            do
+            {
+                answerToQuestion = Console.ReadLine();
+                bool verificationOfAnswerToQuestionOptionHometown = answerToQuestion.Equals("hometown", StringComparison.OrdinalIgnoreCase);
+                bool verificationOfAnswerToQuestionOptionFood = answerToQuestion.Equals("favorite food", StringComparison.OrdinalIgnoreCase);
+                bool verificationOfAnswerToQuestionOptioncColor = answerToQuestion.Equals("color", StringComparison.OrdinalIgnoreCase);
 
+                if (verificationOfAnswerToQuestionOptionFood)
+                {
+                    Console.Write($"{CollectionOfList.PickAStudent(studentOne)}'s {answerToQuestion} is {CollectionOfList.SelectFood(studentOne)} ");
+                }
+                else if ( verificationOfAnswerToQuestionOptionHometown)
+                {
+                    Console.Write($"{CollectionOfList.PickAStudent(studentOne)}'s {answerToQuestion} is {CollectionOfList.SelectHometown(studentOne)} ");
+                }
+                else if (verificationOfAnswerToQuestionOptioncColor)
+                {
+                    Console.Write($"{CollectionOfList.PickAStudent(studentOne)}'s {answerToQuestion} is {CollectionOfList.SelectColor(studentOne)} ");
+                }
+                else
+                {
+                    Console.WriteLine("That data does not exist. Please try again. (enter \"hometown\" or \"favorite food\"):  ");
+                    continue;
+                }
 
+                Console.WriteLine("Would you like to know more? (enter \"yes\" or \"no\"):  ");
+                continueAnswer = Console.ReadLine();
+                
+                //continueAnswer.Equals("yes",StringComparison.OrdinalIgnoreCase) ? continue; 
 
+            } while (continueAnswer.Equals("yes", StringComparison.OrdinalIgnoreCase));
 
+       
 
-
-            Console.ReadKey();
+           Console.ReadKey();
         }
 
         public static uint SelectStudent()
@@ -48,9 +78,9 @@ namespace Lab09
                 {
                     studentVerification = uint.TryParse(student,out studentNumber);
                 }
-                catch (FormatException)
+                catch (FormatException ex)
                 {
-                    
+                    Console.WriteLine(ex);
                     Console.WriteLine("That student does not exist. Please try again. (enter a number 1-20):  ");
                     throw;
                 }
