@@ -12,7 +12,7 @@ namespace Lab09
         
         static void Main(string[] args)
         {
-
+            
             Console.WriteLine("Welcome to our C# class. Which student would you like to learn more about? \n (Enter a number 1-20): ");
 
             uint studentOne = SelectStudent();
@@ -22,7 +22,7 @@ namespace Lab09
                 studentOne = SelectStudent();
             }
 
-            Console.WriteLine($"Student {studentOne} is {CollectionOfList.PickAStudent(studentOne)}. What would you like to know about {CollectionOfList.PickAStudent(studentOne)}? \n (enter \"color\", \"hometown\" or \"favorite food\")  ");
+            Console.WriteLine($"Student {studentOne} is {CollectionOfList.PickAStudent(studentOne,"placeholder" )}. What would you like to know about {CollectionOfList.PickAStudent(studentOne, "placeholder")}? \n (enter \"color\", \"hometown\" or \"favorite food\")  ");
 
             string answerToQuestion;
             string continueAnswer = "";
@@ -35,15 +35,15 @@ namespace Lab09
 
                 if (verificationOfAnswerToQuestionOptionFood)
                 {
-                    Console.Write($"{CollectionOfList.PickAStudent(studentOne)}'s {answerToQuestion} is {CollectionOfList.SelectFood(studentOne)}. ");
+                    Console.Write($"{CollectionOfList.PickAStudent(studentOne, "placeholder")}'s {answerToQuestion} is {CollectionOfList.SelectFood(studentOne, "placeholder")}. ");
                 }
                 else if ( verificationOfAnswerToQuestionOptionHometown)
                 {
-                    Console.Write($"{CollectionOfList.PickAStudent(studentOne)}'s {answerToQuestion} is {CollectionOfList.SelectHometown(studentOne)}. ");
+                    Console.Write($"{CollectionOfList.PickAStudent(studentOne, "placeholder")}'s {answerToQuestion} is {CollectionOfList.SelectHometown(studentOne, "placeholder")}. ");
                 }
                 else if (verificationOfAnswerToQuestionOptioncColor)
                 {
-                    Console.Write($"{CollectionOfList.PickAStudent(studentOne)}'s favorite {answerToQuestion} is {CollectionOfList.SelectColor(studentOne)}. ");
+                    Console.Write($"{CollectionOfList.PickAStudent(studentOne, "placeholder")}'s favorite {answerToQuestion} is {CollectionOfList.SelectColor(studentOne, "placerholder")}. ");
                 }
                 else
                 {
@@ -56,50 +56,19 @@ namespace Lab09
 
                 if (continueAnswer.Equals("yes", StringComparison.OrdinalIgnoreCase))
                 {
-                   Console.WriteLine($"What more would you like to know about {CollectionOfList.PickAStudent(studentOne)}? \n(enter \"color\", \"hometown\" or \"favorite food\")  ");
+                   Console.WriteLine($"What more would you like to know about {CollectionOfList.PickAStudent(studentOne, "placeholder")}? \n(enter \"color\", \"hometown\" or \"favorite food\")  ");
                 }
                 else if (continueAnswer.Equals("add", StringComparison.OrdinalIgnoreCase))
                 {
-                    Console.WriteLine("Great!");
-
-                    Console.Write("What's the name of the new student: ");
-                    string newStudentName = Console.ReadLine();
-                    
-                    while (string.IsNullOrEmpty(newStudentName))
+                    CollectionOfList.AddNewStudent();
+                    Console.WriteLine($"Would you like to continue (enter yes or no)");
+                    continueAnswer = Console.ReadLine();
+                    if (continueAnswer.Equals("yes", StringComparison.OrdinalIgnoreCase))
                     {
-                        Console.Write("Looks you forgot to enter text. What's the new students name?: ");
-                        newStudentName = Console.ReadLine();
+                        Console.WriteLine("Enter a new number: ");
+                        SelectStudent();
                     }
 
-                    Console.Write($"What's {newStudentName}'s favorite color?: ");
-                    string newStudentFavoriteColor = Console.ReadLine();
-
-                    while (string.IsNullOrEmpty(newStudentFavoriteColor))
-                    {
-                        Console.Write($"Looks you forgot to enter a color. What's {newStudentName}'s favorite color?: ");
-                        newStudentFavoriteColor = Console.ReadLine();                   
-                    }
-
-                    Console.Write($"What's {newStudentName}'s favorite food?: ");
-                    string newStudentFavoriteFood = Console.ReadLine();
-
-                    while (string.IsNullOrEmpty(newStudentFavoriteFood))
-                    {
-                        Console.Write($"Looks you forgot to enter a food. What's {newStudentName}'s favorite food?: ");
-                        newStudentFavoriteFood = Console.ReadLine();
-                    }
-
-                    Console.Write($"What's {newStudentName}'s hometown?: ");
-                    string newStudentHomeTown = Console.ReadLine();
-
-                    while (string.IsNullOrEmpty(newStudentHomeTown))
-                    {
-                        Console.Write($"Looks you forgot to enter a color. What's {newStudentName}'s favorite color?: ");
-                        newStudentHomeTown = Console.ReadLine();
-                    }
-
-                    Console.WriteLine($"Awesome. So the new student is {newStudentName}. {newStudentName}'s favorite color is {newStudentFavoriteColor}, \n" +
-                        $"favorite food is {newStudentFavoriteFood}, and hometown is {newStudentHomeTown} ");
                 }
 
 
