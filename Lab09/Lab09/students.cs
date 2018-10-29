@@ -64,6 +64,7 @@ namespace Lab09
 
             try
             {
+               
                 studentNames.Count();
             }
             catch (IndexOutOfRangeException ex)
@@ -73,9 +74,11 @@ namespace Lab09
 
             if (numberOnArray >= newStudentID)
             {
-
+                             
                 //studentNames.Insert(20, new KeyValuePair<uint, string>(numberOnArray, newName));
+                //studentNames.Add(newName);
                 studentNames.Add(newName);
+
             }
 
             //var selectionOfStudent = (from val in studentNames where val.Key == numberOnArray select val.Value).FirstOrDefault();
@@ -139,7 +142,9 @@ namespace Lab09
 
             if (numberOnArray >= newStudentID)
             {
+               
                 studentHomeTowns.Add(newHometown);
+            
             }
 
             //var studentHometown = (from val in studentHomeTowns where val.Key == numberOnArray select val.Value).FirstOrDefault();
@@ -273,11 +278,7 @@ namespace Lab09
                 "Orange",
                 "Yellow",
                 "Red",
-                "BBQ",
-                "BBQ",
-                "BBQ",
-                "BBQ",
-                "BBQ",
+
 
             };
 
