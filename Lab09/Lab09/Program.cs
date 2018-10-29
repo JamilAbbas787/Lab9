@@ -9,7 +9,13 @@ namespace Lab09
     class Program
 
     {
-        
+       //
+       //After I add a new person to my list it does not save to the actual list. 
+       //I tried to add a new person then would try to search for them and the list reverts back to it's origanl length.
+       //Tried using a normal list and a KeyValuePair.
+       //Also had some trouble with exceptions.
+       //
+
         static void Main(string[] args)
         {
             
@@ -26,9 +32,10 @@ namespace Lab09
 
             string answerToQuestion;
             string continueAnswer = "";
+            answerToQuestion = Console.ReadLine();
             do
             {
-                answerToQuestion = Console.ReadLine();
+                
                 bool verificationOfAnswerToQuestionOptionHometown = answerToQuestion.Equals("hometown", StringComparison.OrdinalIgnoreCase);
                 bool verificationOfAnswerToQuestionOptionFood = answerToQuestion.Equals("favorite food", StringComparison.OrdinalIgnoreCase);
                 bool verificationOfAnswerToQuestionOptioncColor = answerToQuestion.Equals("color", StringComparison.OrdinalIgnoreCase);
@@ -47,16 +54,19 @@ namespace Lab09
                 }
                 else
                 {
-                    Console.WriteLine("That data does not exist. Please try again. (enter \"hometown\" or \"favorite food\"):  ");
+                    Console.WriteLine("That data does not exist. Please try again. (enter \"hometown\" or \"favorite food\" or \"color\"):  ");
+                    answerToQuestion = Console.ReadLine();
                     continue;
                 }
 
-                Console.WriteLine("Would you like to know more or add a student to the database? (enter \"yes\" or \"no\" or \"add\"):  ");
+                Console.WriteLine("Would you like to know more, find out about a new student, or add a student to the database? (\n" +
+                    "enter \"yes\" or \"no\" or \"add\" or \"new\"):  ");
                 continueAnswer = Console.ReadLine();
 
                 if (continueAnswer.Equals("yes", StringComparison.OrdinalIgnoreCase))
                 {
                    Console.WriteLine($"What more would you like to know about {CollectionOfList.PickAStudent(studentOne, "placeholder")}? \n(enter \"color\", \"hometown\" or \"favorite food\")  ");
+                    answerToQuestion = Console.ReadLine();
                 }
                 else if (continueAnswer.Equals("add", StringComparison.OrdinalIgnoreCase))
                 {
@@ -65,20 +75,32 @@ namespace Lab09
                     continueAnswer = Console.ReadLine();
                     if (continueAnswer.Equals("yes", StringComparison.OrdinalIgnoreCase))
                     {
+                        listLength++;
                         Console.WriteLine("Enter a new number: ");
-                        SelectStudent();
+                        studentOne = SelectStudent();
+                        Console.WriteLine($"You choose {CollectionOfList.PickAStudent(studentOne, "placeholder")}. \n" +
+                            $" What would you like to know about {CollectionOfList.PickAStudent(studentOne, "placeholder")} (enter \"hometown\" or \"favorite food\" or \"color\"): ");
+                        answerToQuestion = Console.ReadLine();
                     }
-
+                }
+                else if (continueAnswer.Equals("new", StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine("Enter a new number:  ");
+                    studentOne = SelectStudent();
+                    Console.WriteLine($" What would you like to know about { CollectionOfList.PickAStudent(studentOne, "placeholder")} " +
+                        $"(enter \"hometown\" or \"favorite food\" or \"color\"): ");
+                    answerToQuestion = Console.ReadLine();
                 }
 
 
-            } while (continueAnswer.Equals("yes", StringComparison.OrdinalIgnoreCase));
+            } while (continueAnswer.Equals("yes", StringComparison.OrdinalIgnoreCase) || continueAnswer.Equals("new", StringComparison.OrdinalIgnoreCase));
 
             Console.WriteLine("Bye!");
 
            Console.ReadKey();
         }
 
+        public static int listLength= 20;
         public static uint SelectStudent()
         {
             bool studentVerification = false;
@@ -87,7 +109,7 @@ namespace Lab09
 
             while (!studentVerification)
             {
-                
+                studentVerification = false;
                 student = Console.ReadLine();
 
                 try
@@ -100,7 +122,7 @@ namespace Lab09
                     Console.WriteLine("That student does not exist. Please try again. (enter a number 1-20):  ");
                     throw;
                 }
-                if (studentNumber > 20 || studentNumber < 1)
+                if (studentNumber > listLength || studentNumber < 1)
                 {
                     Console.WriteLine("That student does not exist. Please try again. (enter a number 1-20):  ");
                     continue;
