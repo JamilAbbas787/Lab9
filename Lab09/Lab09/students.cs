@@ -72,6 +72,8 @@ namespace Lab09
                 Console.WriteLine($" {ex} That student does not exist. Please try again. (enter a number 1 - 20): ");
             }
 
+            // James - so whenever you are adding students, you are also creating a new List a few lines above this, 
+            // so you are overriding your students each time.
             if (numberOnArray >= newStudentID)
             {
                              
@@ -298,12 +300,14 @@ namespace Lab09
         public static uint newStudentID = 21;
         public static int listLocation = 20;
         
-
+        // James - The reason you are not saving any student information is because you aren't adding them into your lists.
+        // This would be your method to add the students into your list.
         public static void AddNewStudent()
         {
 
             Console.WriteLine("Great!");
-
+            // James - for every single one of these validation, I would just make ONE method, to handle all of these validations 
+            // and just pass it the proper ARGUMENTS to handle each use case.
             Console.Write("What's the name of the new student: ");
             string newStudentName = Console.ReadLine();
 

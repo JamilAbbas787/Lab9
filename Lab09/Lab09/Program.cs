@@ -70,6 +70,13 @@ namespace Lab09
                 }
                 else if (continueAnswer.Equals("add", StringComparison.OrdinalIgnoreCase))
                 {
+                    // James - I like that you made a new class to help solve this problem, I would instead create a normal List of class Student.
+                    // the Student class will then hold all the properties that a student cares about.
+                    // so like var billy = new Student();
+                    // billy.Name = "Billy";
+                    // billy.Food = "Pizza";
+                    // billy.Color = "Blue";
+                    // then store this student in a list and do this for the amount of students that you want to store.
                     CollectionOfList.AddNewStudent();
                     Console.WriteLine($"Would you like to continue (enter yes or no)");
                     continueAnswer = Console.ReadLine();
